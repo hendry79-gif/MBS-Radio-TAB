@@ -6,87 +6,65 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <!-- Achtergrondafbeeldingen -->
   <div id="video-background"></div>
   <script>
     // Zet direct de eerste achtergrond, en wissel elke 50 seconden
-
     const images = [
-      'FotoWK.png',
-      'FotoWK1.png',
-      'FotoWK2.png',
-      'FotoWK3.png',
-      'FotoWK4.png',
-      'FotoWK5.png'
+      'Foto1.jpg', 'Foto2.jpg', 'Foto3.jpg', 'Foto4.jpg', 'Foto5.jpg', 'Foto6.jpg', 'Foto7.jpg', 'Foto8.jpg', 'Foto9.jpg', 'Foto10.jpg',
+	  'Foto11.jpg', 'Foto12.jpg', 'Foto13.jpg', 'Foto14.jpg', 'Foto15.jpg', 'Foto16.jpg', 'Foto17.jpg', 'Foto18.jpg', 'Foto19.jpg', 'Foto20.jpg',
+	  'Foto21.jpg', 'Foto22.jpg', 'Foto23.jpg', 'Foto24.jpg', 'Foto25.jpg'
     ];
-
     let idx = 0;
     const bg = document.getElementById('video-background');
-
     function setBG() {
+      if (!bg) return;
       bg.style.backgroundImage = `url('${images[idx]}')`;
+      bg.style.backgroundColor = '';
     }
-
-    // start met eerste afbeelding
     setBG();
-
-    // wissel elke 15 seconden
     setInterval(() => {
       idx = (idx + 1) % images.length;
       setBG();
-    }, 15000);
+    }, 50000);
   </script>
 
-  
-  <!-- NOS Nieuws Widget (links onder) -->
-  <div class="nos-widget">
-    <h3>Laatste Voetbal Nieuws</h3>
-    <ul id="nos-feed"></ul>
-  </div>
-  
-  <!-- Ranking Widget (rechts onder) -->
-  <div class="nos-widget ranking-widget">
-        <h4>Ranking</h4>
-    <ul id="ranking-feed"></ul>
-  </div>
-  
   <!-- Hoofdcontent en radio -->
   <div class="content">
+    <img src="Logo.png" alt="MBS logo" class="site-logo">
     <section>
-      <div class="radio-controls">
-        <select id="radioSelect">
-          <!-- https://streamurl.link/ -->
-          <option value="https://22333.live.streamtheworld.com/RADIO538.mp3">Radio 538</option>
-          <option value="https://23603.live.streamtheworld.com/100PNL_MP3_SC">100% NL</option>
-          <option value="https://radiostreamfm.com/listen/dolfijn_97.3_fm/radio.mp3">Dolfijn FM</option>
-          <option value="https://stream.gigantfm.nl/gigantfm">Gigant FM</option>
-          <option value="https://icecast-qmusicnl-cdp.triple-it.nl/Joe_nl.mp3">JOE</option>
-          <option value="https://icecast.omroep.nl/radio5-bb-mp3">Radio 5</option>
-          <option value="https://22333.live.streamtheworld.com/RADIO10.mp3">Radio 10</option>
-          <option value="https://22593.live.streamtheworld.com/VERONICA.mp3">Radio Veronica</option>
-          <option value="https://22333.live.streamtheworld.com/SKYRADIO.mp3">Sky Radio</option>
-          <option value="https://stream.tukkerfm.nl/tukkerfm">Tukker FM</option>
-          <option value="https://icecast-qmusicnl-cdp.triple-it.nl/Qmusic_nl_live.mp3">Qmusic</option>
-          <option value="https://20043.live.streamtheworld.com/SLAM_MP3_SC">Slam!</option>
-          <option value="https://25293.live.streamtheworld.com/WEB16_MP3_SC">Slam! Housuh in de Pauzuh</option>
-          <option value="http://stream.antenne.de/antenne/stream/mp3">ANTENNE BAYERN</option>
-          <option value="https://radiovm1.fluidstream.eu/radiovm1.mp3">Radio VM1</option>
-          <option value="https://live.u1-radio.at/u1-tirol-live/">U1 Tirol</option>
-          <option value="http://topcongofm2.ice.infomaniak.ch/topcongofm2-96.mp3">Top Congo FM</option>
-        </select>
-        <button id="playPauseBtn">⏯ Play/Pause</button>
-      </div>
+      <select id="radioSelect">
+        <!-- https://streamurl.link/ -->
+        <option value="https://22333.live.streamtheworld.com/RADIO538.mp3">Radio 538</option>
+        <option value="https://23603.live.streamtheworld.com/100PNL_MP3_SC">100% NL</option>
+        <option value="https://radiostreamfm.com/listen/dolfijn_97.3_fm/radio.mp3">Dolfijn FM</option>
+        <option value="https://stream.gigantfm.nl/gigantfm">Gigant FM</option>
+        <option value="https://icecast-qmusicnl-cdp.triple-it.nl/Joe_nl.mp3">JOE</option>
+        <option value="https://icecast.omroep.nl/radio5-bb-mp3">Radio 5</option>
+        <option value="https://22333.live.streamtheworld.com/RADIO10.mp3">Radio 10</option>
+        <option value="https://22593.live.streamtheworld.com/VERONICA.mp3">Radio Veronica</option>
+        <option value="https://22333.live.streamtheworld.com/SKYRADIO.mp3">Sky Radio</option>
+        <option value="https://stream.tukkerfm.nl/tukkerfm">Tukker FM</option>
+        <option value="https://icecast-qmusicnl-cdp.triple-it.nl/Qmusic_nl_live.mp3">Qmusic</option>
+        <option value="https://20043.live.streamtheworld.com/SLAM_MP3_SC">Slam!</option>
+        <option value="https://25293.live.streamtheworld.com/WEB16_MP3_SC">Slam! Housuh in de Pauzuh</option>
+        <option value="http://stream.antenne.de/antenne/stream/mp3">ANTENNE BAYERN</option>
+        <option value="https://radiovm1.fluidstream.eu/radiovm1.mp3">Radio VM1</option>
+        <option value="https://live.u1-radio.at/u1-tirol-live/">U1 Tirol</option>
+        <option value="http://topcongofm2.ice.infomaniak.ch/topcongofm2-96.mp3">Top Congo FM</option>
+      </select>
+      <br><br>
       <audio id="radioPlayer" autoplay>
         <source src="https://22333.live.streamtheworld.com/RADIO538.mp3" type="audio/mpeg">
         Je browser ondersteunt geen audio.
       </audio>
+      <button id="playPauseBtn">⏯ Play/Pause</button>
       <script>
         // Radio functionaliteit
         const radioSelect = document.getElementById('radioSelect');
         const radioPlayer = document.getElementById('radioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
-        radioPlayer.volume = 1.0;
+        if (radioPlayer) radioPlayer.volume = 1.0;
         radioSelect.addEventListener('change', function() {
           radioPlayer.src = this.value;
           radioPlayer.play();
@@ -98,84 +76,7 @@
             radioPlayer.pause();
           }
         });
-        
-        function loadNosNieuws() {
-          fetch("https://api.rss2json.com/v1/api.json?rss_url=https://feeds.nos.nl/nosvoetbal")
-            .then(response => response.json())
-            .then(data => {
-              let items = data.items.slice(0, 3);
-              let list = document.getElementById("nos-feed");
-              list.innerHTML = ""; // leegmaken
-              items.forEach(item => {
-                let li = document.createElement("li");
-                li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-                list.appendChild(li);
-              });
-            })
-            .catch(error => console.error('Fout bij laden NOS nieuws:', error));
-        }
-        
-        // Laad NOS nieuws bij pagina laden
-        loadNosNieuws();
-        
-        // Herlaad elke 5 minuten
-        setInterval(loadNosNieuws, 5 * 60 * 1000);
-        
-        // Ranking data - Pas deze aan met de actuele gegevens van voetbalpoules.nl/poule/315788/ranglijst
-        const rankingData = [
-          
-		 // stijging 
-		 // 0= Blijven staan 
-		 // -1= rode pijl omlaag 1 plek gezakt 
-		 // 2= groene pijl 2 plekken gestegen
-		 
-          { pos: '1', naam: 'Sokkie121', 			punten: '909 pts ', dagscore: ' +2', stijging: 0 },
-          { pos: '2', naam: 'De Wisselvalligen', 	punten: '880 pts ', dagscore: ' +2', stijging: 0 },
-          { pos: '3', naam: 'FC_Schwalbe',	 		punten: '827 pts ', dagscore: ' +17', stijging: 0 },
-          { pos: '4', naam: 'Nonkel Frans', 		punten: '786 pts ', dagscore: ' +15', stijging: 1 },
-          { pos: '5', naam: 'Lokaal Talent', 		punten: '781 pts ', dagscore: ' +15', stijging: 1 },
-          { pos: '6', naam: 'Pinchhitter FM',	 	punten: '780 pts ', dagscore: ' +2', stijging: -2 },
-          { pos: '7', naam: 'pohhh', 				punten: '758 pts ', dagscore: ' 0', stijging: 0 },
-          { pos: '8', naam: 'leo pessi', 			punten: '718 pts ', dagscore: ' 0', stijging: 0 }
-        ];
-        
-        function loadRanking() {
-          const list = document.getElementById('ranking-feed');
-          list.innerHTML = '';
-          
-          rankingData.forEach(item => {
-            let li = document.createElement('li');
-
-            let trend = '';
-			
-if (item.stijging > 0) {
-  trend = `<span class="trend up">▲ +${item.stijging}</span>`;
-} else if (item.stijging < 0) {
-  trend = `<span class="trend down">▼ ${item.stijging}</span>`;
-} else {
-  trend = `<span class="trend mid">–</span>`;
-}
-
-            li.innerHTML = `
-              <div class="ranking-row">
-<div class="ranking-left">
-  <strong>#${item.pos}</strong>
-  ${item.naam}
-  ${trend}
-</div>
-                <div class="ranking-right">
-                  ${item.punten} ${item.dagscore}
-                </div>
-              </div>`;
-
-            list.appendChild(li);
-          });
-        }
-        
-        // Laad ranking bij pagina laden
-        loadRanking();
       </script>
-    </section>
-  </div>
+
 </body>
 </html>

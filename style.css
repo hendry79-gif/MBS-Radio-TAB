@@ -7,39 +7,157 @@ body, html {
   color: white;
   text-align: center;
   overflow: hidden;
+}
 
+/* Weeronline linksboven */
+.weeronline-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 15;
+  width: 350px;
+  max-height: 700px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.7);
 }
 
 #video-background {
-    position: fixed;
-    inset: 0;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
-    background-color: #CFE8CD;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain; /* Zorgt dat foto volledig zichtbaar blijft */
+  background-color: black; /* Achtergrondvulling bij andere beeldverhoudingen */
+  z-index: -1;
+}
+
+/* Weer-widget rechtsboven (Meteoblue) - geforceerd rechtsboven en overlay voor bottom branding */
+.weather-container {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 460px;
+  height: 570px; /* 590 - 20 */
+  overflow: hidden;
+  z-index: 9999;
+  pointer-events: none;
+  left: auto !important;      /* forceer niet aan de linkerkant te plakken */
+  z-index: 9999 !important;   /* boven andere widgets */
+  text-align: right;
+
+}
+
+  /* houd iframe op originele grootte; gebruik overlay om de onderste ~20px te verbergen */
+  width: 460px;    /* match the iframe width used in HTML */
+  height: 590px;   /* original iframe height */
+  transform: translateY(-20px); /* schuift iframe omhoog zodat onderste 20px buiten wrapper ligt */
+  pointer-events: none; /* container itself should not block clicks */
+}
+
+/* Meteoblue (rechtsboven) - top blijft exact op 20px; alleen onderste ~20px wordt weggeknipt */
+.weather-container {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  z-index: 9999 !important;
+  width: 460px;     /* moet gelijk zijn aan de iframe width in index.html */
+  height: 590px;    /* gelijke hoogte als de iframe: geen verschuiving van bovenkant */
+  overflow: hidden; /* wrapper verbergt alles wat buiten valt */
+  text-align: right;
+  pointer-events: none; /* container zelf blokkeert geen klikken */
+}
+
+/* iframe vult de ruimte en we knippen alleen de onderkant weg (clip-path) */
+.weather-container iframe {
+  width: 460px !important;
+  height: 520px !important;
+  display: block;
+  border: none;
+  background: transparent;
+  pointer-events: auto; /* laat klikken door naar de iframe */
+}
+
+.nos-widget {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 15;
+  width: 700px;
+  max-height: 250px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.7);
+}
+.nos-widget h3 {
+  margin-top: 0;
+  font-size: 3rem;
+}
+.nos-widget ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nos-widget li {
+  margin: 5px 0;
+}
+.nos-widget a {
+  color: white;
+  text-decoration: none;
+}
+.nos-widget a:hover {
+  text-decoration: underline;
+}
+
+/* Meteoblue link kleiner maken */
+.weather-container a {
+  font-size: 0.85em;
+  color: #ccc;
+  text-decoration: none;
+}
+.weather-container a:hover {
+  text-decoration: underline;
+}
+
+/* Content blok */
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  margin-top: 5%;
+  border-radius: 0;
+  display: inline-block;
+  box-shadow: none;
+}
+
+.site-logo {
+  max-width: 1500px;     /* standaard max breedte */
+  width: 100%;          /* schaalt automatisch af */
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;  /* centreren + ruimte eronder */
+}
+
+/* Op kleinere schermen (mobiel) logo wat kleiner */
+@media (max-width: 600px) {
+  .site-logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+  }
 }
 
 /* Koppen */
-h1 {
-  font-size: 5rem;
-  margin-bottom: 20px;
-  color: black;              /* zwarte tekst */
-  text-shadow: none;         /* oude schaduw weghalen */
-  -webkit-text-stroke: 1px white; /* witte rand */
-}
-
-/* Radio controls container */
-.radio-controls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
 
 #playPauseBtn {
+  margin-top: 10px;
   padding: 8px 14px;
   font-size: 1rem;
   border: none;
@@ -59,72 +177,13 @@ audio, #radioPlayer {
   outline: none;
 }
 
-.nos-widget {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 15;
-  width: 650px;
-  max-height: 250px;
-  overflow-y: auto;
-  background: rgba(0,0,0,0.7);
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.7);
-}
-.nos-widget h3 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  margin: 0 0 10px 0;
-}
-.nos-widget ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.nos-widget li {
-  font-size: 0.95rem;
-  text-align: center;
-  margin: 3px 0;
-}
-.nos-widget a {
-  color: white;
-  text-decoration: none;
-}
-.nos-widget a:hover {
-  text-decoration: underline;
-}
-
-/* Ranking Widget (rechts onder, zelfde stijl als nos-widget) */
-.ranking-widget {
-  position: fixed !important;
-  left: auto !important;
-  right: 20px !important;
-  width: 270px;
-  max-height: 300px;
-  bottom: 20px !important;
-}
-.ranking-widget h4 {
-  font-size: 1.5rem;
-  margin: 0 0 8px 0;
-}
-.ranking-widget ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.ranking-widget li {
-  font-size: 0.95rem;
-  text-align: left;
-  margin: 3px 0;
-}
-
 /* Dropdown styling */
 #radioSelect {
   padding: 8px 12px;
   border-radius: 8px;
   border: none;
   font-size: 1rem;
+  margin-top: 10px;
   cursor: pointer;
   background: #222;
   color: white;
@@ -134,53 +193,27 @@ audio, #radioPlayer {
   background: #444;
 }
 
-.ranking-row {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  width:100%;
+/* DaysPedia widget: fixed rechtsonderin aangepast op 260x319 iframe */
+/* We crop the bottom ~20px (branding) by making the wrapper shorter and hiding overflow. */
+.dayspedia-wrapper {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9999;
+  width: 260px;
+  height: 319px;  /* gelijke hoogte als de iframe */
+  overflow: hidden;
+  pointer-events: auto;
 }
 
-.ranking-left {
-  display:flex;
-  align-items:center;
-  gap:8px;
-  text-align:left;
+.dayspedia-wrapper iframe {
+  width: 260px !important;
+  height: 319px !important;
+  display: block;
+  border: none;
+  background: transparent;
+  -webkit-clip-path: inset(0 0 20px 0); /* knip alleen onderkant */
+  clip-path: inset(0 0 20px 0);
 }
 
-.ranking-right {
-  margin-left:auto;
-  min-width:50px;
-  text-align:right;
-}
-
-.trend.up {
-    color: #00d84a;
-    font-weight: bold;
-}
-
-.trend.mid {
-    color: #999999;
-    font-weight: bold;
-}
-
-.trend.down {
-    color: #ff3b30;
-    font-weight: bold;
-}
-.trend {
-	color: #00d84a;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-weight: bold;
-    min-width: 10px;
-	    font-size: 0.65em;
-    font-weight: bold;
-    margin-left: 4px;
-    vertical-align: middle;
-}
-
-.trend svg {
-    flex-shrink: 0;
-}
+/* If needed, tweak the translateY value slightly to perfectly hide/remove the 'powered' text. */
